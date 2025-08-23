@@ -1,0 +1,870 @@
+.fundraising-container10 {
+  width: 100%;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+ 
+.fundraising-container11 {
+  width: 100%;
+  height: auto;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f29b98;
+}
+ 
+.fundraising-navbar-interactive {
+  width: 100%;
+  display: flex;
+  padding: 0px;
+  align-items: center;
+  padding-left: 0px;
+  justify-content: space-between;
+}
+ 
+.fundraising-link10 {
+  display: contents;
+}
+ 
+.fundraising-image1 {
+  width: var(--dl-layout-size-medium);
+  height: var(--dl-layout-size-medium);
+  display: none;
+  margin-left: var(--dl-layout-space-halfunit);
+  text-decoration: none;
+}
+ 
+.fundraising-desktop-menu {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+ 
+.fundraising-links1 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+ 
+.fundraising-link11 {
+  display: contents;
+}
+ 
+.fundraising-image2 {
+  width: var(--dl-layout-size-large);
+  height: var(--dl-layout-size-large);
+  margin-left: 0px;
+  text-decoration: none;
+}
+ 
+.fundraising-link12 {
+  color: #ffffff;
+  font-size: 20px;
+  margin-left: 50%;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+ 
+.fundraising-link13 {
+  fill: #ffffff;
+  color: #ffffff;
+  font-size: 20px;
+  margin-left: var(--dl-layout-space-twounits);
+  text-transform: capitalize;
+  text-decoration: none;
+}
+ 
+.fundraising-link14 {
+  fill: #ffffff;
+  color: #ffffff;
+  font-size: 20px;
+  margin-left: var(--dl-layout-space-twounits);
+  text-decoration: none;
+}
+ 
+.fundraising-link15 {
+  fill: #ffffff;
+  color: #ffffff;
+  font-size: 20px;
+  margin-left: var(--dl-layout-space-twounits);
+  text-decoration: none;
+}
+ 
+.fundraising-link16 {
+  fill: #ffffff;
+  color: #ffffff;
+  font-size: 20px;
+  margin-left: var(--dl-layout-space-twounits);
+  text-decoration: none;
+}
+ 
+.fundraising-link17 {
+  fill: #ffffff;
+  color: #ffffff;
+  font-size: 20px;
+  margin-left: var(--dl-layout-space-twounits);
+  margin-right: 0%;
+  text-decoration: none;
+}
+ 
+.fundraising-burger-menu {
+  display: none;
+}
+ 
+.fundraising-mobile-menu {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  padding: 32px;
+  z-index: 100;
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+}
+ 
+.fundraising-nav {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+ 
+.fundraising-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+.fundraising-link18 {
+  display: contents;
+}
+ 
+.fundraising-logo {
+  height: 2rem;
+  text-decoration: none;
+}
+ 
+.fundraising-close-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.fundraising-links2 {
+  flex: 0 0 auto;
+  display: flex;
+  align-self: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+ 
+.fundraising-link19 {
+  text-decoration: none;
+}
+ 
+.fundraising-link20 {
+  text-decoration: none;
+}
+ 
+.fundraising-link21 {
+  text-decoration: none;
+}
+ 
+.fundraising-navlink {
+  text-decoration: none;
+}
+ 
+.fundraising-link22 {
+  text-decoration: none;
+}
+ 
+.fundraising-link23 {
+  text-decoration: none;
+}
+ 
+.fundraising-icon14 {
+  text-decoration: none;
+}
+ 
+.fundraising-icon16 {
+  text-decoration: none;
+}
+ 
+.fundraising-icon18 {
+  text-decoration: none;
+}
+ 
+.fundraising-container12 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+ 
+.fundraising-container13 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  margin-top: 2%;
+  align-items: center;
+  margin-bottom: 2%;
+  flex-direction: column;
+  justify-content: center;
+}
+ 
+.fundraising-container14 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+ 
+.fundraising-container15 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2%;
+  flex-direction: row;
+  justify-content: center;
+}
+ 
+.fundraising-image3 {
+  width: 30%;
+  height: auto;
+  align-self: center;
+  object-fit: cover;
+  margin-right: 1%;
+}
+ 
+.fundraising-image4 {
+  width: 30%;
+  height: auto;
+  align-self: center;
+  object-fit: cover;
+  margin-left: 1%;
+}
+ 
+.fundraising-container16 {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  border-radius: var(--dl-layout-radius-buttonradius);
+  flex-direction: column;
+  background-color: #f29b98;
+}
+ 
+.fundraising-text10 {
+  color: rgb(255, 255, 255);
+  font-size: 140%;
+  margin-top: 2%;
+  text-align: center;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-bottom: 2%;
+}
+ 
+.fundraising-container17 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+ 
+.fundraising-container18 {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  margin-bottom: 3%;
+  flex-direction: column;
+  justify-content: center;
+}
+ 
+.fundraising-container19 {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+ 
+.fundraising-link27 {
+  font-size: 140%;
+  border-width: 0px;
+  border-radius: var(--dl-layout-radius-buttonradius);
+  margin-bottom: 10%;
+  text-decoration: none;
+  background-color: #ffffff;
+}
+ 
+.fundraising-link28 {
+  font-size: 140%;
+  border-width: 0px;
+  border-radius: var(--dl-layout-radius-buttonradius);
+  text-decoration: none;
+  background-color: rgb(255, 255, 255);
+}
+ 
+.fundraising-container20 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #000000;
+}
+ 
+.fundraising-text81 {
+  color: #bcbcbc;
+  font-size: 80%;
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 0px;
+}
+ 
+.fundraising-image5 {
+  width: 5%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+ 
+@media(max-width: 1600px) {
+  .fundraising-container10 {
+    background-color: #f29b98;
+  }
+  .fundraising-image1 {
+    width: var(--dl-layout-size-medium);
+    height: var(--dl-layout-size-medium);
+    display: none;
+    margin-left: var(--dl-layout-space-halfunit);
+  }
+  .fundraising-image2 {
+    width: var(--dl-layout-size-large);
+    height: var(--dl-layout-size-large);
+    margin-left: 0px;
+  }
+  .fundraising-link12 {
+    color: #ffffff;
+    margin-left: 30%;
+  }
+  .fundraising-link13 {
+    color: #ffffff;
+    margin-left: var(--dl-layout-space-twounits);
+  }
+  .fundraising-link14 {
+    color: #ffffff;
+    margin-left: var(--dl-layout-space-twounits);
+  }
+  .fundraising-link15 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-left: var(--dl-layout-space-twounits);
+    text-decoration: none;
+  }
+  .fundraising-link16 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-left: var(--dl-layout-space-twounits);
+    text-decoration: none;
+  }
+  .fundraising-link17 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-left: var(--dl-layout-space-twounits);
+    text-decoration: none;
+  }
+  .fundraising-container13 {
+    width: 100%;
+  }
+  .fundraising-container15 {
+    width: 100%;
+  }
+  .fundraising-image3 {
+    width: 35%;
+  }
+  .fundraising-image4 {
+    width: 35%;
+  }
+  .fundraising-container16 {
+    width: 60%;
+  }
+  .fundraising-text10 {
+    font-size: 130%;
+  }
+  .fundraising-link27 {
+    font-size: 130%;
+  }
+  .fundraising-link28 {
+    font-size: 130%;
+  }
+  .fundraising-text81 {
+    font-size: 70%;
+    margin-bottom: 0px;
+  }
+  .fundraising-image5 {
+    width: 5%;
+    margin-bottom: 20px;
+  }
+}
+ 
+@media(max-width: 1200px) {
+  .fundraising-navbar-interactive {
+    padding: 0px;
+    padding-left: 0px;
+  }
+  .fundraising-image1 {
+    width: var(--dl-layout-size-medium);
+    height: var(--dl-layout-size-medium);
+    display: none;
+    margin-left: var(--dl-layout-space-halfunit);
+  }
+  .fundraising-image2 {
+    width: var(--dl-layout-size-large);
+    height: var(--dl-layout-size-large);
+    margin-left: 0px;
+  }
+  .fundraising-link12 {
+    font-size: 20px;
+    margin-left: 20%;
+    text-transform: capitalize;
+    text-decoration: none;
+  }
+  .fundraising-link13 {
+    margin-left: var(--dl-layout-space-twounits);
+  }
+  .fundraising-link14 {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    margin-left: var(--dl-layout-space-twounits);
+    text-decoration: none;
+  }
+  .fundraising-link15 {
+    font-size: 20px;
+    margin-left: var(--dl-layout-space-twounits);
+  }
+  .fundraising-link16 {
+    font-size: 20px;
+    margin-left: var(--dl-layout-space-twounits);
+  }
+  .fundraising-link17 {
+    font-size: 20px;
+    margin-left: var(--dl-layout-space-twounits);
+    margin-right: 0px;
+  }
+  .fundraising-image3 {
+    height: auto;
+  }
+  .fundraising-image4 {
+    height: 50%;
+  }
+  .fundraising-container16 {
+    width: 60%;
+  }
+  .fundraising-text10 {
+    font-size: 120%;
+  }
+  .fundraising-container18 {
+    margin-bottom: 4%;
+  }
+  .fundraising-link27 {
+    font-size: 120%;
+  }
+  .fundraising-link28 {
+    font-size: 120%;
+  }
+  .fundraising-text81 {
+    margin-bottom: 0px;
+  }
+  .fundraising-image5 {
+    width: 7%;
+    margin-bottom: 20px;
+  }
+}
+ 
+@media(max-width: 991px) {
+  .fundraising-container11 {
+    background-color: #f29b98;
+  }
+  .fundraising-navbar-interactive {
+    padding: 0px;
+  }
+  .fundraising-image1 {
+    width: var(--dl-layout-size-medium);
+    height: var(--dl-layout-size-medium);
+    display: none;
+    margin-left: var(--dl-layout-space-halfunit);
+  }
+  .fundraising-links1 {
+    width: auto;
+    align-self: stretch;
+    margin-right: 0px;
+  }
+  .fundraising-image2 {
+    width: var(--dl-layout-size-medium);
+    height: var(--dl-layout-size-medium);
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+  .fundraising-link12 {
+    margin-left: 3%;
+  }
+  .fundraising-link13 {
+    margin-left: var(--dl-layout-space-twounits);
+  }
+  .fundraising-link14 {
+    margin-left: var(--dl-layout-space-twounits);
+  }
+  .fundraising-link15 {
+    margin-left: var(--dl-layout-space-twounits);
+  }
+  .fundraising-link16 {
+    margin-left: var(--dl-layout-space-twounits);
+  }
+  .fundraising-link17 {
+    margin-left: var(--dl-layout-space-twounits);
+    margin-right: 0%;
+  }
+  .fundraising-container12 {
+    width: 100%;
+  }
+  .fundraising-container13 {
+    width: 100%;
+  }
+  .fundraising-container14 {
+    width: 100%;
+  }
+  .fundraising-container15 {
+    width: 100%;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: center;
+  }
+  .fundraising-image3 {
+    width: 40%;
+  }
+  .fundraising-image4 {
+    width: 40%;
+  }
+  .fundraising-container16 {
+    width: 70%;
+  }
+  .fundraising-text10 {
+    color: #ffffff;
+    font-size: 110%;
+    margin-left: 1%;
+  }
+  .fundraising-container18 {
+    margin-bottom: 4%;
+  }
+  .fundraising-link27 {
+    font-size: 110%;
+  }
+  .fundraising-link28 {
+    font-size: 110%;
+  }
+  .fundraising-text81 {
+    margin-bottom: 0px;
+  }
+  .fundraising-image5 {
+    width: 9%;
+  }
+}
+ 
+@media(max-width: 767px) {
+  .fundraising-navbar-interactive {
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+  }
+  .fundraising-image1 {
+    width: var(--dl-layout-size-medium);
+    height: var(--dl-layout-size-medium);
+    display: flex;
+    margin-left: var(--dl-layout-space-halfunit);
+  }
+  .fundraising-desktop-menu {
+    display: none;
+  }
+  .fundraising-image2 {
+    width: var(--dl-layout-size-medium);
+    height: var(--dl-layout-size-medium);
+    margin-left: var(--dl-layout-space-halfunit);
+  }
+  .fundraising-burger-menu {
+    display: flex;
+    align-items: center;
+    margin-right: 0px;
+    justify-content: center;
+  }
+  .fundraising-icon10 {
+    fill: #ffffff;
+    width: var(--dl-layout-size-xsmall);
+    height: var(--dl-layout-size-xsmall);
+    margin-right: var(--dl-layout-space-twounits);
+  }
+  .fundraising-mobile-menu {
+    height: 100uh;
+    padding: 0px;
+    background-color: #f29b98;
+  }
+  .fundraising-top {
+    margin-bottom: 0px;
+  }
+  .fundraising-logo {
+    width: var(--dl-layout-size-medium);
+    height: var(--dl-layout-size-medium);
+    margin-left: var(--dl-layout-space-halfunit);
+  }
+  .fundraising-icon12 {
+    fill: #fff;
+    width: var(--dl-layout-size-xsmall);
+    height: var(--dl-layout-size-xsmall);
+    margin-right: 32px;
+    padding-right: 0px;
+  }
+  .fundraising-links2 {
+    padding: 32px;
+    margin-left: var(--dl-layout-space-twounits);
+    padding-left: 1px;
+  }
+  .fundraising-link19 {
+    fill: #fff;
+    color: #fff;
+    margin-left: 0;
+    margin-bottom: var(--dl-layout-space-unit);
+  }
+  .fundraising-link20 {
+    fill: #fff;
+    color: #fff;
+    margin-bottom: var(--dl-layout-space-unit);
+  }
+  .fundraising-link21 {
+    fill: #fff;
+    color: rgb(255, 255, 255);
+    margin-left: 0;
+    margin-bottom: var(--dl-layout-space-unit);
+    text-decoration: none;
+  }
+  .fundraising-navlink {
+    fill: #fff;
+    color: #fff;
+    margin-left: 0;
+    margin-bottom: var(--dl-layout-space-unit);
+  }
+  .fundraising-link22 {
+    fill: #fff;
+    color: #fff;
+    margin-left: 0;
+    margin-bottom: var(--dl-layout-space-unit);
+  }
+  .fundraising-link23 {
+    fill: #fff;
+    color: #fff;
+    margin-left: 0;
+    margin-bottom: var(--dl-layout-space-unit);
+  }
+  .fundraising-icon-group {
+    margin-left: 32px;
+    margin-bottom: 32px;
+  }
+  .fundraising-icon14 {
+    fill: #fff;
+    width: var(--dl-layout-size-xsmall);
+    height: var(--dl-layout-size-xsmall);
+    margin-right: var(--dl-layout-space-twounits);
+  }
+  .fundraising-icon16 {
+    fill: #fff;
+    width: var(--dl-layout-size-xsmall);
+    height: var(--dl-layout-size-xsmall);
+    margin-right: var(--dl-layout-space-twounits);
+  }
+  .fundraising-icon18 {
+    fill: #fff;
+    color: #fff;
+    width: var(--dl-layout-size-xsmall);
+    height: var(--dl-layout-size-xsmall);
+  }
+  .fundraising-container12 {
+    width: 100%;
+  }
+  .fundraising-container13 {
+    width: 100%;
+  }
+  .fundraising-container14 {
+    width: 100%;
+  }
+  .fundraising-container15 {
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .fundraising-image3 {
+    width: 45%;
+    height: 100%;
+  }
+  .fundraising-image4 {
+    width: 45%;
+    height: 100%;
+  }
+  .fundraising-container16 {
+    width: 80%;
+  }
+  .fundraising-text10 {
+    font-size: 100%;
+    margin-left: 1%;
+  }
+  .fundraising-container18 {
+    margin-bottom: 5%;
+  }
+  .fundraising-link27 {
+    font-size: 100%;
+  }
+  .fundraising-link28 {
+    font-size: 100%;
+  }
+  .fundraising-text81 {
+    font-size: 60%;
+  }
+  .fundraising-image5 {
+    width: 11%;
+  }
+}
+ 
+@media(max-width: 390px) {
+  .fundraising-navbar-interactive {
+    padding: 0px;
+  }
+  .fundraising-image1 {
+    width: 20%;
+    height: 20%;
+    display: flex;
+  }
+  .fundraising-image2 {
+    width: 20%;
+    height: 20%;
+    display: flex;
+  }
+  .fundraising-icon10 {
+    fill: #ffffff;
+    width: var(--dl-layout-size-xsmall);
+    height: var(--dl-layout-size-xsmall);
+    margin-right: var(--dl-layout-space-twounits);
+  }
+  .fundraising-mobile-menu {
+    padding: 0px;
+  }
+  .fundraising-logo {
+    width: 20%;
+    height: 100%;
+    margin-left: var(--dl-layout-space-halfunit);
+  }
+  .fundraising-icon12 {
+    width: var(--dl-layout-size-xsmall);
+    height: var(--dl-layout-size-xsmall);
+  }
+  .fundraising-links2 {
+    margin-left: var(--dl-layout-space-twounits);
+    padding-left: 0px;
+  }
+  .fundraising-link19 {
+    margin-bottom: var(--dl-layout-space-unit);
+  }
+  .fundraising-link20 {
+    margin-bottom: var(--dl-layout-space-unit);
+  }
+  .fundraising-link21 {
+    margin-bottom: var(--dl-layout-space-unit);
+  }
+  .fundraising-navlink {
+    margin-bottom: var(--dl-layout-space-unit);
+  }
+  .fundraising-link22 {
+    margin-bottom: var(--dl-layout-space-unit);
+  }
+  .fundraising-link23 {
+    margin-bottom: var(--dl-layout-space-unit);
+    text-decoration: none;
+  }
+  .fundraising-icon14 {
+    fill: #ffff;
+    width: var(--dl-layout-size-xsmall);
+    height: var(--dl-layout-size-xsmall);
+    margin-right: var(--dl-layout-space-twounits);
+  }
+  .fundraising-icon16 {
+    fill: #fff;
+    width: var(--dl-layout-size-xsmall);
+    height: var(--dl-layout-size-xsmall);
+    margin-right: var(--dl-layout-space-twounits);
+  }
+  .fundraising-icon18 {
+    fill: #fff;
+    color: #fff;
+    width: var(--dl-layout-size-xsmall);
+    height: var(--dl-layout-size-xsmall);
+  }
+  .fundraising-container12 {
+    width: 100%;
+  }
+  .fundraising-container13 {
+    width: 100%;
+  }
+  .fundraising-container14 {
+    width: 100%;
+  }
+  .fundraising-container15 {
+    width: 100%;
+  }
+  .fundraising-image3 {
+    width: 45%;
+    align-self: center;
+  }
+  .fundraising-image4 {
+    width: 45%;
+    height: auto;
+  }
+  .fundraising-text10 {
+    font-size: 90%;
+    margin-left: 1%;
+  }
+  .fundraising-container18 {
+    margin-bottom: 5%;
+  }
+  .fundraising-link27 {
+    font-size: 90%;
+    background-color: #ffffff;
+  }
+  .fundraising-link28 {
+    font-size: 90%;
+    background-color: #ffffff;
+  }
+  .fundraising-text81 {
+    font-size: 50%;
+  }
+  .fundraising-image5 {
+    width: 15%;
+  }
+}
