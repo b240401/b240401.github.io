@@ -2,24 +2,24 @@
 
 
 
-/* 移除邊框 */
+
 .custom-toggler {
   border: none;
   padding: 0.25rem;
 }
 
-/* 三條線 */
+
 .custom-toggler .toggler-icon {
   display: block;
   width: 25px;
   height: 3px;
-  background-color: #ffffff; /* 線條顏色，可改成 #fb7299 粉紅色 */
+  background-color: #ffffff; 
   margin: 5px 0;
   transition: all 0.3s ease-in-out;
   border-radius: 2px;
 }
 
-/* 點擊展開時 (變 X) */
+
 .navbar-toggler[aria-expanded="true"] .toggler-icon:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -32,11 +32,11 @@
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* 公告欄卡片 */
+
 .announcement-card {
-  background: #fff;           /* 白底 */
-  position: relative;         /* 避免背景透出 */
-  z-index: 10;                /* 壓在星空之上 */
+  background: #fff;          
+  position: relative;        
+  z-index: 10;                
   border-left: 5px solid #0d6efd;
   transition: transform 0.2s;
 }
@@ -45,7 +45,7 @@
 }
 .announcement-card.pinned {
   border-left-color: #dc3545;
-  background: #fff5f5;        /* pinned 用淡紅白背景 */
+  background: #fff5f5;        
 }
 .announcement-date {
   font-size: 0.9rem;
@@ -54,9 +54,9 @@
 }
 
 
-/* 置頂公告樣式 */
+
 .pinned {
-  border-left: 5px solid #dc3545; /* 紅色提醒 */
+  border-left: 5px solid #dc3545; 
   background: #fff5f5;
   position: relative;
 }
@@ -80,22 +80,22 @@ html, body {
   padding: 0;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden; /* 禁止水平捲動 */
+  overflow-x: hidden; 
 }
 
 section, div {
-  max-width: 100vw; /* 限制最大寬度不超過螢幕 */
+  max-width: 100vw; 
   overflow-x: hidden;
 }
 
 
-/* 滾動容器 */
+
 .snap-container {
   height: 100vh;
   
 }
 
-/* 每一頁 */
+
 .snap-section {
   height: 100vh;
   position: relative;
@@ -105,13 +105,13 @@ section, div {
   
 }
 
-/* 確保圖片置中、大小自適應 */
+
 .snap-section picture img {
-  max-height: 60vh; /* 避免圖片過大 */
+  max-height: 60vh;
   width: auto;
 }
 
-/* 桌機版背景 */
+
 .bg-img-desktop {
   background: url("./images/a.jpeg") no-repeat center center;
   background-size: cover;
@@ -119,7 +119,7 @@ section, div {
   text-align: center;
 }
 
-/* 手機版背景 */
+
 .bg-img-mobile {
   background: url("./images/b.jpeg") no-repeat center center;
   background-size: cover;
@@ -127,7 +127,7 @@ section, div {
   text-align: center;
 }
 
-/* 第二頁 星空漸層背景 */
+
 .starry-bg {
   position: relative;
   height: 100%;
@@ -138,7 +138,7 @@ section, div {
 }
 
 
-/* 桌機版背景 */
+
 .bg2-img-desktop {
   background: url("./images/e-desk.jpg") no-repeat center center;
   background-size: cover;
@@ -146,7 +146,7 @@ section, div {
   text-align: center;
 }
 
-/* 手機版背景 */
+
 .bg2-img-mobile {
   background: url("./images/page3m.jpg") no-repeat center center;
   background-size: cover;
@@ -154,7 +154,7 @@ section, div {
   text-align: center;
 }
 
-/* 桌機版背景 */
+
 .bg3-img-desktop {
   background: url("./images/page4m.WEBP") no-repeat center center;
   background-size: cover;
@@ -162,7 +162,7 @@ section, div {
   text-align: center;
 }
 
-/* 手機版背景 */
+
 .bg3-img-mobile {
   background: url("./images/page4m.WEBP") no-repeat center center;
   background-size: cover;
@@ -176,7 +176,7 @@ section, div {
 
 .mswiper {
   width: 100%;
-  max-width: 680px;    /* 卡片最大寬度不超過 680px */
+  max-width: 680px;    
   height: auto;
   text-align: center;
   position: relative;
@@ -184,12 +184,12 @@ section, div {
   flex-direction: column;
   align-items: center;
 }
-/* 移除背後陰影 */
+
 .swiper-slide-shadow {
   display: none !important;
 }
 
-/* 讓卡片堆疊時置中 */
+
 .swiper {
   display: flex;
   justify-content: center;
@@ -203,9 +203,9 @@ section, div {
   
 }
 .mcard {
-  aspect-ratio: 680 / 1020; /* 固定比例 680:1020 */
-  width: 60%;              /* 預設寬度佔螢幕 80% */
-  max-width: 600px;        /* 最大寬度 */
+  aspect-ratio: 680 / 1020; 
+  width: 60%;              
+  max-width: 600px;        
   border-radius: 15px;
   position: relative;
   overflow: hidden;
@@ -238,12 +238,12 @@ section, div {
 
 
 .carousel {
-      max-width: 800px;   /* 限制最大寬度，避免過大 */
+      max-width: 800px;   
       width: 100%;
 }
 
 
-/* 只給第四頁用的背景 */
+
 .link-section {
   min-height: 100vh;
   overflow: hidden;
@@ -251,7 +251,7 @@ section, div {
   position: relative;
 }
 
-/* 星空層 */
+
 .link-section .stars {
   position: absolute;
   width: 100%;
@@ -268,7 +268,7 @@ section, div {
   to { transform: translateY(-200px); }
 }
 
-/* 連結按鈕 */
+
 .link-btn {
   display: flex;
   flex-direction: column;
@@ -307,7 +307,7 @@ section, div {
   opacity: 0.95;
 }
 
-/* 顏色 */
+
 .btn-ig { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
 .btn-fb { background: #1877f2; }
 .btn-line { background: #06c755; }
@@ -332,7 +332,7 @@ section, div {
   z-index: 2;
 }
 
-/* 標題文字大小響應式 */
+
 h1 {
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: bold;
@@ -344,21 +344,21 @@ h1 {
 
 
 
-/* 滾動容器 */
+
 .snap-container {
   height: 100vh;
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
 
-/* 區塊 */
+
 .snap-section {
   height: 100vh;
   position: relative;
-  padding-top: 56px; /* 避開固定 navbar */
+  padding-top: 56px; 
 }
 
-/* 背景圖 */
+
 .bg-img-1 {
   background: url("./images/cplus.jpeg") no-repeat center center;
   background-size: cover;
@@ -367,3 +367,4 @@ h1 {
   background: url("./images/d.WEBP") no-repeat center center;
   background-size: cover;
 }
+
