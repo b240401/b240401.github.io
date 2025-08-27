@@ -1,0 +1,369 @@
+
+
+
+
+/* 移除邊框 */
+.custom-toggler {
+  border: none;
+  padding: 0.25rem;
+}
+
+/* 三條線 */
+.custom-toggler .toggler-icon {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #ffffff; /* 線條顏色，可改成 #fb7299 粉紅色 */
+  margin: 5px 0;
+  transition: all 0.3s ease-in-out;
+  border-radius: 2px;
+}
+
+/* 點擊展開時 (變 X) */
+.navbar-toggler[aria-expanded="true"] .toggler-icon:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-toggler[aria-expanded="true"] .toggler-icon:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggler[aria-expanded="true"] .toggler-icon:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* 公告欄卡片 */
+.announcement-card {
+  background: #fff;           /* 白底 */
+  position: relative;         /* 避免背景透出 */
+  z-index: 10;                /* 壓在星空之上 */
+  border-left: 5px solid #0d6efd;
+  transition: transform 0.2s;
+}
+.announcement-card:hover {
+  transform: translateY(-5px);
+}
+.announcement-card.pinned {
+  border-left-color: #dc3545;
+  background: #fff5f5;        /* pinned 用淡紅白背景 */
+}
+.announcement-date {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+
+/* 置頂公告樣式 */
+.pinned {
+  border-left: 5px solid #dc3545; /* 紅色提醒 */
+  background: #fff5f5;
+  position: relative;
+}
+
+.pinned::before {
+  content: "📌 已置頂";
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 0.8rem;
+  color: #dc3545;
+  font-weight: bold;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* 禁止水平捲動 */
+}
+
+section, div {
+  max-width: 100vw; /* 限制最大寬度不超過螢幕 */
+  overflow-x: hidden;
+}
+
+
+/* 滾動容器 */
+.snap-container {
+  height: 100vh;
+  
+}
+
+/* 每一頁 */
+.snap-section {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+/* 確保圖片置中、大小自適應 */
+.snap-section picture img {
+  max-height: 60vh; /* 避免圖片過大 */
+  width: auto;
+}
+
+/* 桌機版背景 */
+.bg-img-desktop {
+  background: url("./images/a.jpeg") no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+/* 手機版背景 */
+.bg-img-mobile {
+  background: url("./images/b.jpeg") no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+/* 第二頁 星空漸層背景 */
+.starry-bg {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to top, #060058 0%, #000000 65%);
+  color: white;
+  text-align: center;
+}
+
+
+/* 桌機版背景 */
+.bg2-img-desktop {
+  background: url("./images/e-desk.jpg") no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+/* 手機版背景 */
+.bg2-img-mobile {
+  background: url("./images/page3m.jpg") no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+/* 桌機版背景 */
+.bg3-img-desktop {
+  background: url("./images/page4m.WEBP") no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+/* 手機版背景 */
+.bg3-img-mobile {
+  background: url("./images/page4m.WEBP") no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+
+
+
+
+.mswiper {
+  width: 100%;
+  max-width: 680px;    /* 卡片最大寬度不超過 680px */
+  height: auto;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* 移除背後陰影 */
+.swiper-slide-shadow {
+  display: none !important;
+}
+
+/* 讓卡片堆疊時置中 */
+.swiper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.mcard {
+  aspect-ratio: 680 / 1020; /* 固定比例 680:1020 */
+  width: 60%;              /* 預設寬度佔螢幕 80% */
+  max-width: 600px;        /* 最大寬度 */
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.mcard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mtip {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #e2f81d;
+  font-weight: bold;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #ff4d4d, 0 0 10px #ff8080;
+  }
+  to {
+    text-shadow: 0 0 15px #ff0000, 0 0 30px #ff4d4d;
+  }
+}
+
+
+.carousel {
+      max-width: 800px;   /* 限制最大寬度，避免過大 */
+      width: 100%;
+}
+
+
+/* 只給第四頁用的背景 */
+.link-section {
+  min-height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at bottom, #0d1b2a, #000);
+  position: relative;
+}
+
+/* 星空層 */
+.link-section .stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+  animation: twinkle 6s infinite linear;
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+@keyframes twinkle {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-200px); }
+}
+
+/* 連結按鈕 */
+.link-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 1;
+}
+.link-btn .top-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.3rem;
+}
+.link-btn i {
+  font-size: 1.8rem;
+}
+.link-btn .sub-text {
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-top: 6px;
+  opacity: 0.9;
+  text-align: center;
+}
+.link-btn:hover {
+  transform: translateY(-4px);
+  opacity: 0.95;
+}
+
+/* 顏色 */
+.btn-ig { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
+.btn-fb { background: #1877f2; }
+.btn-line { background: #06c755; }
+.btn-tellonym { background: #ff5ca2; }
+.btn-threads { background: #000; }
+
+ 
+.starry-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.starry-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* 標題文字大小響應式 */
+h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: bold;
+}
+
+.an-text {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+}
+
+
+
+/* 滾動容器 */
+.snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+/* 區塊 */
+.snap-section {
+  height: 100vh;
+  position: relative;
+  padding-top: 56px; /* 避開固定 navbar */
+}
+
+/* 背景圖 */
+.bg-img-1 {
+  background: url("./images/cplus.jpeg") no-repeat center center;
+  background-size: cover;
+}
+.bg-img-2 {
+  background: url("./images/d.WEBP") no-repeat center center;
+  background-size: cover;
+}
