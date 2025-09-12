@@ -1,8 +1,8 @@
 
 
-/* ...existing code... */
 
-/* 公告卡片進場動畫 */
+
+
 @keyframes slideInUp {
   from {
     opacity: 0;
@@ -14,7 +14,7 @@
   }
 }
 
-/* 標題文字大小響應式 */
+
 h1 {
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: bold;
@@ -24,46 +24,46 @@ h1 {
   font-size: clamp(1rem, 3vw, 1.5rem);
 }
 
-/* 公告卡片基本樣式和動畫 */
+
 .announcement-card {
   border-left: 5px solid #0d6efd;
   animation: slideInUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* 置頂公告樣式 */
+
 .pinned {
   border-left: 5px solid #dc3545 !important; /* 使用 !important 確保優先級 */
   animation: slideInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 
-/* 其他動畫和樣式保持不變... */
+
 .announcement-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
-/* ...existing code... */
+
 
 .announcement-card {
   border-left: 5px solid #0d6efd; /* 一般公告保持藍色 */
-  /* ...existing code... */
+  
 }
 
 .pinned {
   border-left: 5px solid #dc3545; /* 置頂公告改為紅色 */
-  /* ...existing code... */
+  
 }
 
-/* ...existing code... */
-/* 置頂公告特殊動畫 */
+
+
 .pinned {
-  /* ...existing code... */
+ 
   animation: slideInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .pinned::before {
-  /* ...existing code... */
+  
   animation: fadeIn 0.5s ease-out 0.3s both;
 }
 
@@ -78,7 +78,7 @@ h1 {
   }
 }
 
-/* 按鈕懸停效果優化 */
+
 .btn {
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -88,7 +88,7 @@ h1 {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* 導航欄動畫優化 */
+
 .navbar {
   transition: background-color 0.3s ease-in-out;
 }
@@ -114,9 +114,9 @@ h1 {
   left: 0;
 }
 
-/* ...existing code... */
 
-/* 自定義漢堡選單樣式 */
+
+
 .custom-toggler .toggler-icon {
   display: block;
   width: 30px;
@@ -149,14 +149,11 @@ h1 {
   transform: rotate(45deg) translate(-5px, -6px);
 }
 
-/* ...existing code... */
 
-/* ...existing code... */
 
 /* 日期文字大小設定 */
 .date-text {
-  font-size: 0.9rem;  /* 設定較小的字體大小 */
-  color: #6c757d;     /* 使用灰色讓日期較不搶眼 */
+  font-size: 0.9rem;  
+  color: #6c757d;     
 }
 
-/* ...existing code... */
