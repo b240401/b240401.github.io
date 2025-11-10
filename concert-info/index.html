@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/animate.css@4.1.1/animate.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <meta
+      property="og:title"
+      content="演唱會資訊"
+    /><meta property="og:description" content="BABYMONSTER臺灣首站 - 演唱會資訊"
+    /><meta name="description" content="BABYMONSTER臺灣首站 - 演唱會資訊" 
+    /><link rel="icon" href="./images/logo.png" type="image/png">
+<meta property="og:image" content="https://babymonster.tw/public/icon.png" />
+    <meta property="og:url" content="https://babymonster.tw/concert-info" /><meta
+  ><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>演唱會資訊</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" >
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+  <!-- 固定頂部選單 -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm" >
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center" href="https://babymonster.tw">
+        <img src="./images/logo.png" alt="logo" style="height:30px; margin-right:10px;">
+        寶怪台灣首站
+      </a>
+
+      <!-- 漢堡按鈕 -->
+      <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="切換選單">
+        <span class="toggler-icon"></span>
+        <span class="toggler-icon"></span>
+        <span class="toggler-icon"></span>
+      </button>
+
+
+      <!-- 左邊選單 -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+        </ul>
+
+        <!-- 右邊選單 -->
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="https://babymonster.tw">主頁</a></li>
+          <li class="nav-item"><a class="nav-link active" href="https://babymonster.tw/concert-info">演唱會資訊</a></li>
+          <li class="nav-item"><a class="nav-link active" href="https://babymonster.tw/announced">重要公告</a></li>
+          <li class="nav-item"><a class="nav-link active" href="https://babymonster.tw/links">相關連結</a></li>
+          <li class="nav-item"><a class="nav-link active" href="https://babymonster.tw/about">關於我們</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container my-5">
+        <h2 class="mb-4 text-center concert-title">🎤 演唱會資訊</h2>
+        
+        <div class="row g-4 justify-content-center">
+          <!-- 演唱會主要資訊卡片 -->
+          <div class="col-12 col-md-10 col-lg-8">
+            <div class="card shadow-lg concert-card animate__animated animate__fadeInUp">
+              <div class="card-body p-4">
+                <h3 class="card-title text-center mb-4 concert-main-title">BABYMONSTER 台北演唱會</h3>
+                
+                <div class="concert-details mb-4">
+                  <div class="detail-item" data-aos="fade-right">
+                    <i class="fas fa-calendar-alt"></i>
+                    <strong>日期：</strong>2026／1／2（五）～ 1／3（六）
+                  </div>
+                  <div class="detail-item" data-aos="fade-right" data-aos-delay="100">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <strong>地點：</strong>台北小巨蛋
+                  </div>
+                  <div class="detail-item" data-aos="fade-right" data-aos-delay="200">
+                    <i class="fas fa-city"></i>
+                    <strong>城市：</strong>台北
+                  </div>
+                  <div class="detail-item" data-aos="fade-right" data-aos-delay="300">
+                    <i class="fas fa-ticket-alt"></i>
+                    <strong>售票平台：</strong>KKTIX
+                  </div>
+                  <div class="detail-item" data-aos="fade-right" data-aos-delay="400">
+                    <i class="fas fa-building"></i>
+                    <strong>主辦單位：</strong>SuperDome超級圓頂
+                  </div>
+                </div>
+
+                <hr class="my-4">
+
+                <h4 class="text-center mb-4 concert-subtitle">售票時間</h4>
+
+                <!-- MONSTIEZ 會員預售 -->
+                <div class="ticket-section mb-4" data-aos="zoom-in">
+                  <h5 class="ticket-type">🔹 MONSTIEZ 會員預售</h5>
+                  <div class="ticket-info">
+                    <p><strong>資格：</strong>需為有效 MONSTIEZ 會員</p>
+                    <p><strong>預售時間：</strong>2025／11／14（五）13:00 ～ 23:59</p>
+                    <p><strong>限購：</strong>每筆交易最多 2 張❗️</p>
+                    <p class="text-warning"><strong>提醒：</strong>加入會員或登記不代表保證購票成功</p>
+                  </div>
+                </div>
+
+                <!-- 一般售票 -->
+                <div class="ticket-section mb-4" data-aos="zoom-in" data-aos-delay="100">
+                  <h5 class="ticket-type">🔹 一般售票</h5>
+                  <div class="ticket-info">
+                    <p><strong>開賣時間：</strong>2025／11／15（六）12:00</p>
+                    <p><strong>限購：</strong>每筆交易最多 4 張</p>
+                    <p><strong>平台：</strong>KKTIX</p>
+                  </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="text-center" data-aos="fade-up">
+                  <p class="alert-text mb-3">詳情請見SuperDome超級圓頂官網</p>
+                  <a href="https://www.facebook.com/share/p/1BTFHZtF4i/?mibextid=wwXIfr" class="btn btn-danger btn-lg pulse-button" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> 前往官網查看詳情
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 地圖區域 -->
+        <div class="row g-4 justify-content-center mt-4">
+          <div class="col-12 col-md-10 col-lg-8">
+            <div class="card shadow-lg map-card" data-aos="fade-up">
+              <div class="card-body p-4">
+                <h4 class="text-center mb-4 map-title">
+                  <i class="fas fa-map-marked-alt"></i> 演唱會地點
+                </h4>
+                <div class="map-container">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7229.200647898774!2d121.54893834939894!3d25.047634261230137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abe81eb85771%3A0x682251d5c6f37a58!2z6Ie65YyX5bCP5beo6JuL!5e0!3m2!1szh-TW!2stw!4v1762574002187!5m2!1szh-TW!2stw" width="100%" height="450" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 免責聲明 -->
+      <div class="row g-4 justify-content-center mt-4">
+        <div class="col-12 col-md-10 col-lg-8">
+          <div class="disclaimer-section" data-aos="fade-up">
+            <h5 class="disclaimer-title">
+              <i class="fas fa-exclamation-triangle"></i> 免責聲明
+            </h5>
+            <div class="disclaimer-content">
+              <p>• 本頁面資訊僅供參考，實際售票詳情請以主辦單位 SuperDome 超級圓頂官方公告為準。</p>
+              <p>• 演唱會時間、地點、售票方式等資訊如有變動，請以官方最新公告為主。</p>
+              <p>• 本站不負責因資訊差異而產生的任何損失或糾紛。</p>
+              <p>• 購票前請務必詳閱主辦單位官網之完整資訊及相關規定。</p>
+              <p class="disclaimer-update">最後更新時間：2025年11月8日</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- Footer -->
+    <!-- 版權聲明 -->
+ <footer>
+        Copyright © 2025 BABYMONSTER臺灣首站 All Rights Reserved.
+        
+  </footer>
+      
+      
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // 初始化 AOS 動畫庫
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+
+    // 按鈕懸停效果
+    document.querySelectorAll('.pulse-button').forEach(button => {
+      button.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.05)';
+      });
+      button.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+      });
+    });
+  </script>
+
+  <style>
+    body {
+  padding-top: 70px; 
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 50%, #2c2c2c 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.concert-title {
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2rem;
+}
+
+/* 輪播圖樣式 - 已移除 */
+
+.concert-card {
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.concert-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(254, 0, 0, 0.4);
+}
+
+.concert-main-title {
+  color: #fe0000;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.concert-subtitle {
+  color: #fe0000;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.concert-details {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+  padding: 25px;
+  border-radius: 15px;
+  border-left: 5px solid #fe0000;
+  box-shadow: 0 5px 15px rgba(254, 0, 0, 0.1);
+}
+
+/* 會員登記區塊 */
+.registration-section {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  padding: 25px;
+  border-radius: 15px;
+  border-left: 5px solid #2196F3;
+  box-shadow: 0 5px 15px rgba(33, 150, 243, 0.2);
+  text-align: center;
+}
+
+.registration-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.registration-title {
+  color: #1976D2;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.registration-title i {
+  margin-right: 10px;
+}
+
+.registration-time {
+  color: #333;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.btn-registration {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-registration:hover {
+  background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.6);
+  color: white;
+}
+
+.btn-registration i {
+  margin-right: 8px;
+}
+
+.detail-item {
+  padding: 12px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.detail-item i {
+  color: #fe0000;
+  margin-right: 15px;
+  width: 25px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.ticket-section {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+  padding: 25px;
+  border-radius: 15px;
+  border-left: 5px solid #ff4444;
+  box-shadow: 0 5px 15px rgba(255, 68, 68, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ticket-section:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(254, 0, 0, 0.2);
+}
+
+.ticket-type {
+  color: #fe0000;
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.ticket-info p {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 1rem;
+}
+
+.alert-text {
+  color: #fe0000;
+  font-weight: bold;
+  font-size: 1.1rem;
+  animation: pulse-text 2s infinite;
+}
+
+@keyframes pulse-text {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.pulse-button {
+  background: linear-gradient(135deg, #fe0000 0%, #cc0000 100%);
+  border: none;
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(254, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.pulse-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.pulse-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.pulse-button:hover {
+  background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(254, 0, 0, 0.6);
+}
+
+/* 地圖卡片樣式 */
+.map-card {
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.map-title {
+  color: #fe0000;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.map-title i {
+  color: #fe0000;
+  margin-right: 10px;
+}
+
+.map-container {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 免責聲明區塊 */
+.disclaimer-section {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  padding: 25px;
+  border-radius: 15px;
+  border-left: 5px solid #ffc107;
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.2);
+  margin-top: 30px;
+}
+
+.disclaimer-title {
+  color: #856404;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.disclaimer-title i {
+  margin-right: 10px;
+  color: #ffc107;
+}
+
+.disclaimer-content {
+  color: #333;
+  line-height: 1.8;
+}
+
+.disclaimer-content p {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.disclaimer-update {
+  margin-top: 15px;
+  font-size: 0.85rem;
+  color: #856404;
+  font-style: italic;
+  text-align: right;
+  margin-bottom: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.container.my-5 {
+  flex: 1; 
+}
+
+footer {
+    background-color: #000000;
+    color: #B7B7B7;
+    display: flex;
+    flex-direction: column;   
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    padding: 10px 0;
+    margin-top: 50px;
+}
+
+footer p {
+    text-align: center;       
+    margin: 0;                
+    max-width: 90%;           
+    word-wrap: break-word;    
+}
+
+footer img {
+    margin-top: 5px; 
+}
+
+/* 響應式設計 */
+@media(max-width: 768px) {
+  .concert-title {
+    font-size: 2rem;
+  }
+  
+  .concert-main-title {
+    font-size: 1.5rem;
+  }
+  
+  .detail-item {
+    font-size: 1rem;
+  }
+  
+  .pulse-button {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+
+  .map-container iframe {
+    height: 300px !important;
+  }
+}
+
+/* 滾動條樣式 */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #4d4d4d 0%, #333333 100%);
+}
+
+/* 防止橫向滾動 */
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-width: 100vw;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+}
+
+.container {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.container.my-5 {
+  flex: 1;
+  overflow: visible;
+}
+
+/* 導航欄容器對齊 */
+nav .container {
+  padding-left: calc((100vw - 66.666%) / 2);
+  padding-right: calc((100vw - 66.666%) / 2);
+}
+
+@media(max-width: 991px) {
+  nav .container {
+    padding-left: calc((100vw - 83.333%) / 2);
+    padding-right: calc((100vw - 83.333%) / 2);
+  }
+}
+
+@media(max-width: 767px) {
+  nav .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+  </style>
+
+
+</body>
+</html>
