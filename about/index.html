@@ -78,11 +78,35 @@
       rel="stylesheet"
       href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
     />
+    <style>
+      .star-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: -1;
+      }
+      .star {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 50%;
+        animation: twinkle linear infinite;
+        box-shadow: 0 0 5px #fff;
+      }
+      @keyframes twinkle {
+        0% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 1; transform: scale(1.2); }
+        100% { opacity: 0; transform: scale(0.5); }
+      }
+    </style>
   </head>
   <body
     ><link rel="stylesheet" href="./style.css" /><div
       ><link href="./about.css" rel="stylesheet" /><div class="about-container1"
-        ><header data-thq="thq-navbar" class="about-navbar-interactive"
+        ><div class="star-bg" id="star-bg"></div><header data-thq="thq-navbar" class="about-navbar-interactive"
           ><a href="https://babymonster.tw/" class="about-navlink10"
             ><img
               alt="logo"
@@ -182,7 +206,7 @@
           ></div
         ><img
           alt="image"
-          src="public/qrcodee-1200w.png"
+          src="public/qrcodee0417.png"
           class="about-image3" /><div class="about-container5"
           ><h1 class="about-text6"
             >Copyright © 2025–2026 BABYMONSTER臺灣首站 All Rights Reserved. </h1
@@ -194,5 +218,22 @@
     <script
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
-    ></script></body
-></html>
+    ></script>
+    <script>
+      const starBg = document.getElementById('star-bg');
+      for (let i = 0; i < 150; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 2 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = (Math.random() * 100) + '%';
+        star.style.top = (Math.random() * 100) + '%';
+        star.style.animationDuration = (Math.random() * 3 + 1.5) + 's';
+        star.style.animationDelay = (Math.random() * 5) + 's';
+        star.style.opacity = Math.random();
+        starBg.appendChild(star);
+      }
+    </script>
+  </body>
+</html>
