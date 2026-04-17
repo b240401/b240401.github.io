@@ -1,0 +1,290 @@
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* 消除手機點擊高光 */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    /* 加入星空背景漸層 */
+    background: radial-gradient(ellipse at center 60%, rgba(150, 180, 210, 0.6) 0%, rgba(45, 75, 110, 0.5) 30%, rgba(5, 12, 25, 0.9) 70%), linear-gradient(to bottom, #02050a 0%, #0a1120 50%, #152033 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* 手機端通常為直向 (Portrait) */
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: white;
+    /* 避免手機瀏覽器滾動溢出 */
+    touch-action: none;
+    position: relative; /* 為了讓 star-bg 定位 */
+}
+
+/* === 星空背景特效 === */
+.star-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+.star {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: twinkle linear infinite;
+    box-shadow: 0 0 5px #fff;
+}
+@keyframes twinkle {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+/* === 專輯資料夾按鈕 === */
+.menu-btn {
+    position: fixed;
+    top: 50%;
+    left: 20px; /* 放在左側邊 */
+    transform: translateY(-50%); /* 上下置中 */
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    z-index: 200; /* 給最高層級，讓它在側邊欄之上一點或可自由覆蓋 */
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.menu-btn svg {
+    width: 100%;
+    height: 100%;
+    transition: fill 0.3s ease;
+}
+
+.menu-btn.open svg {
+    fill: rgba(30, 215, 96, 0.3); /* 打開選單時有底部高光 */
+}
+
+/* === 左側抽屜選單 === */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -280px; /* 隱藏於左側 */
+    width: 260px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+    padding: 80px 20px 20px;
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.mobile-menu.open {
+    left: 0; /* 滑動出 */
+}
+
+.mobile-menu h3 {
+    color: #1ed760;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu li {
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #b3b3b3;
+    transition: background 0.3s, color 0.3s;
+}
+
+.mobile-menu li:active, .mobile-menu li:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu li.active {
+    background: rgba(30, 215, 96, 0.2);
+    color: #1ed760;
+    font-weight: bold;
+}
+
+/* === 遮罩層 === */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 50;
+    transition: opacity 0.4s;
+}
+.overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* === 3D 場景 === */
+.scene {
+    width: 100%;
+    flex: 1; /* 佔滿剩餘高度 */
+    perspective: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel {
+    /* 手機版將 CD 縮小以配合垂直螢幕的寬度 */
+    width: 140px;
+    height: 140px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg); /* 整個面向前面，無 Y 軸傾斜 */
+    /* 移除 transition 讓手動滑動更跟手 */
+}
+
+.cd-item {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cd-title {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    transform: translateZ(12px);
+    pointer-events: none;
+}
+
+.cd-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cd-front {
+    transform: translateZ(8px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.cd-back {
+    background-color: #282828;
+    transform: rotateY(180deg) translateZ(8px);
+}
+
+.cd-top, .cd-bottom, .cd-left, .cd-right {
+    background-color: #000000;
+}
+
+.cd-top {
+    height: 16px;
+    transform: rotateX(90deg) translateZ(8px);
+    top: -8px;
+}
+.cd-bottom {
+    height: 16px;
+    transform: rotateX(-90deg) translateZ(132px);
+    top: -8px;
+}
+.cd-left {
+    width: 16px;
+    transform: rotateY(-90deg) translateZ(8px);
+    left: -8px;
+}
+.cd-right {
+    width: 16px;
+    transform: rotateY(90deg) translateZ(132px);
+    left: -8px;
+}
+
+/* === 漢堡選單(導覽列) 三條線自訂樣式 === */
+.custom-toggler .toggler-icon {
+  display: block;
+  width: 30px;
+  height: 2px;
+  margin: 6px 0;
+  background-color: #fff;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.custom-toggler {
+  border: none;
+}
+
+.custom-toggler:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.custom-toggler[aria-expanded="true"] .toggler-icon:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.custom-toggler[aria-expanded="true"] .toggler-icon:nth-child(2) {
+  opacity: 0;
+}
+
+.custom-toggler[aria-expanded="true"] .toggler-icon:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* === Footer 樣式 === */
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000000;
+    color: #B7B7B7;
+    display: flex;
+    flex-direction: column;   
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+    padding: 10px 0;
+    z-index: 100;
+}
+
+footer p {
+    text-align: center;       
+    margin: 0;                
+    max-width: 90%;           
+    word-wrap: break-word;    
+}
+
+footer img {
+    margin-top: 5px; 
+}

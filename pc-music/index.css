@@ -1,0 +1,267 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(ellipse at center 60%, rgba(150, 180, 210, 0.6) 0%, rgba(45, 75, 110, 0.5) 30%, rgba(5, 12, 25, 0.9) 70%), linear-gradient(to bottom, #02050a 0%, #0a1120 50%, #152033 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: white;
+    position: relative; /* 為了讓 star-bg 定位 */
+}
+
+/* === 星空背景特效 === */
+.star-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+.star {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: twinkle linear infinite;
+    box-shadow: 0 0 5px #fff;
+}
+@keyframes twinkle {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+.scene {
+    width: 100%;
+    height: 60vh;
+    perspective: 1200px; /* 提供 3D 深度 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-15deg) rotateY(0deg); /* 傾斜 X 軸讓圓形看起來像橫向橢圓 */
+    transition: transform 0.1s linear; /* 平滑旋轉 */
+}
+
+.cd-item {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cd-title {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    transform: translateZ(15px); /* 稍微往前浮現，避免被厚度蓋住 */
+    pointer-events: none; /* 避免干擾點擊 */
+}
+
+/* 使用 JS 控制各個 cd 的 hover 動效以避免覆蓋 transform 屬性 */
+
+/* === 左上角分類列表 === */
+.category-sidebar {
+    position: fixed;
+    top: 80px; /* 將原本的 20px 往下移，避免被頂部導覽列蓋住 */
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7); /* 黑色半透明 */
+    backdrop-filter: blur(10px); /* 磨砂玻璃特效 (加分質感) */
+    padding: 20px;
+    border-radius: 16px; /* 圓角 */
+    z-index: 100; /* 確保在畫面的上層 */
+    min-width: 180px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); /* 立體陰影 */
+}
+
+.category-sidebar h3 {
+    margin: 0 0 15px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1ed760; /* Spotify 綠色標題 */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.category-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-sidebar li {
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-radius: 8px; /* 清單項目也做一點小圓角 */
+    transition: background 0.3s, color 0.3s;
+    font-size: 14px;
+    color: #b3b3b3; /* Spotify 次要文字顏色 */
+}
+
+.category-sidebar li:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.category-sidebar li.active {
+    background: rgba(30, 215, 96, 0.2); /* 淡綠色背景 */
+    color: #1ed760;
+    font-weight: bold;
+}
+
+/* 立體正方形 (3D 厚度) 的各個面 */
+.cd-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cd-front {
+    transform: translateZ(10px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.cd-back {
+    background-color: #282828;
+    transform: rotateY(180deg) translateZ(10px);
+}
+
+.cd-top, .cd-bottom, .cd-left, .cd-right {
+    background-color: #000000; /* Spotify 綠色當作厚度顏色 */
+}
+
+.cd-top {
+    height: 20px;
+    transform: rotateX(90deg) translateZ(10px);
+    top: -10px;
+}
+
+.cd-bottom {
+    height: 20px;
+    transform: rotateX(-90deg) translateZ(190px);
+    top: -10px;
+}
+
+.cd-left {
+    width: 20px;
+    transform: rotateY(-90deg) translateZ(10px);
+    left: -10px;
+}
+
+.cd-right {
+    width: 20px;
+    transform: rotateY(90deg) translateZ(190px);
+    left: -10px;
+}
+
+.controls {
+    width: 80%;
+    max-width: 600px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #535353;
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.8;
+    transition: opacity .2s;
+    cursor: pointer;
+}
+
+input[type=range]:hover {
+    opacity: 1;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #1ed760;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+input[type=range]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #1ed760;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    border: none;
+}
+
+.instruction {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+/* === Footer 樣式 === */
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000000;
+    color: #B7B7B7;
+    display: flex;
+    flex-direction: column;   
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+    padding: 10px 0;
+    z-index: 100;
+}
+
+footer p {
+    text-align: center;       
+    margin: 0;                
+    max-width: 90%;           
+    word-wrap: break-word;    
+}
+
+footer img {
+    margin-top: 5px; 
+}
