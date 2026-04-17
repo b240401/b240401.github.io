@@ -61,12 +61,36 @@
       rel="stylesheet"
       href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
     />
+    <style>
+      .star-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: -1;
+      }
+      .star {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 50%;
+        animation: twinkle linear infinite;
+        box-shadow: 0 0 5px #fff;
+      }
+      @keyframes twinkle {
+        0% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 1; transform: scale(1.2); }
+        100% { opacity: 0; transform: scale(0.5); }
+      }
+    </style>
   </head>
   <body
     ><link rel="stylesheet" href="./style.css" /><div
       ><link href="./links.css" rel="stylesheet" /><div
-        class="links-container10"
-        ><header data-thq="thq-navbar" class="links-navbar-interactive"
+        class="links-container10" id="links-container"
+        ><div class="star-bg" id="star-bg"></div><header data-thq="thq-navbar" class="links-navbar-interactive"
           ><a
             href="https://babymonster.tw"
             
@@ -120,7 +144,7 @@
                 d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
               ></path></svg></div
           ><div data-thq="thq-mobile-menu" class="links-mobile-menu"
-            ><div class="links-nav"
+            ><div class="star-bg" id="star-bg-mobile"></div><div class="links-nav"
               ><div class="links-top"
                 ><a
                   href="https://babymonster.tw"
@@ -141,11 +165,6 @@
                   
                   class="links-link19"
                   >主頁</a
-                ><a
-                  href="https://babymonster.tw/concert-info"
-                  
-                  class="links-link20"
-                  >演唱會資訊</a
                 ><a
                   href="https://babymonster.tw/announced"
                   
@@ -296,7 +315,7 @@
             ></a
           ><img
             alt="image"
-            src="public/external/qrcodee-1200w-1200w.png"
+            src="public/qrcodee0417.png"
             class="links-image8" /></div
         ><div class="links-container24"
           ><h1 class="links-text21"
@@ -309,5 +328,28 @@
     <script
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
-    ></script></body
-></html>
+    ></script>
+    <script>
+      const starBg = document.getElementById('star-bg');
+      const starBgMobile = document.getElementById('star-bg-mobile');
+      function createStars(container, count) {
+        if (!container) return;
+        for (let i = 0; i < count; i++) {
+          const star = document.createElement('div');
+          star.classList.add('star');
+          const size = Math.random() * 2 + 1;
+          star.style.width = size + 'px';
+          star.style.height = size + 'px';
+          star.style.left = (Math.random() * 100) + '%';
+          star.style.top = (Math.random() * 100) + '%';
+          star.style.animationDuration = (Math.random() * 3 + 1.5) + 's';
+          star.style.animationDelay = (Math.random() * 5) + 's';
+          star.style.opacity = Math.random();
+          container.appendChild(star);
+        }
+      }
+      createStars(starBg, 150);
+      createStars(starBgMobile, 50);
+    </script>
+  </body>
+</html>
