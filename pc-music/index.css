@@ -265,3 +265,63 @@ footer p {
 footer img {
     margin-top: 5px; 
 }
+
+/* === Navbar 動畫特效 (來自 announced) === */
+.navbar {
+  transition: background-color 0.3s ease-in-out;
+  backdrop-filter: blur(5px);
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease-in-out;
+  font-weight: 500;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #fff;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Toggler */
+.custom-toggler .toggler-icon {
+  display: block;
+  width: 30px;
+  height: 2px;
+  margin: 6px 0;
+  background-color: #fff;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.navbar-toggler {
+  padding: 0;
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.custom-toggler[aria-expanded="true"] .toggler-icon:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.custom-toggler[aria-expanded="true"] .toggler-icon:nth-child(2) {
+  opacity: 0;
+}
+
+.custom-toggler[aria-expanded="true"] .toggler-icon:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
