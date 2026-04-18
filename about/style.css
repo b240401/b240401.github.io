@@ -5,6 +5,11 @@
   font-weight: 400;
   src: url("public/fonts/paralucent-stencil-heavy.otf") ;
 }
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
   
 :root {
   --dl-layout-size-large: 144px;
