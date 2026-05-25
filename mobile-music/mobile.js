@@ -1,24 +1,31 @@
-// 星空背景產生腳本 (來自 home)
+// =====================================================================
+//  星空背景 (行動版：數量略減以兼顧效能/電量)
+// =====================================================================
 document.addEventListener('DOMContentLoaded', () => {
     const starBg = document.getElementById('star-bg');
-    if (starBg) {
-        for (let i = 0; i < 150; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            const size = Math.random() * 2 + 1;
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            star.style.left = (Math.random() * 100) + '%';
-            star.style.top = (Math.random() * 100) + '%';
-            star.style.animationDuration = (Math.random() * 3 + 1.5) + 's';
-            star.style.animationDelay = (Math.random() * 5) + 's';
-            star.style.opacity = Math.random();
-            starBg.appendChild(star);
-        }
+    if (!starBg) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const count = reduced ? 40 : 90;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 2 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = (Math.random() * 100) + '%';
+        star.style.top = (Math.random() * 100) + '%';
+        star.style.animationDuration = (Math.random() * 3 + 1.5) + 's';
+        star.style.animationDelay = (Math.random() * 5) + 's';
+        star.style.opacity = Math.random();
+        frag.appendChild(star);
     }
+    starBg.appendChild(frag);
 });
 
-// 此處對應您的播放清單
+// =====================================================================
+//  播放清單 (可自行更換 imageUrl 和 spotifyUrl)
+// =====================================================================
 const cdConfig = [
     {
         group: "DRIP",
@@ -151,145 +158,171 @@ const cdConfig = [
         title: "BATTER UP -JP Ver.",
         imageUrl: "https://i.scdn.co/image/ab67616d00001e02fbbc19bdfa0c01f3bfcd4428",
         spotifyUrl: "https://open.spotify.com/track/37Md0gjwNkqK7hwJEnTeNH?si=bf55a3f4c8a24572"
+    },
+    {
+        group: "춤 (CHOOM)",
+        title: "MOON",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e020fbcc1d9dc6a647af4ebdfee",
+        spotifyUrl: "https://open.spotify.com/track/4ni36cZOQZldZGpHyLHFqX?si=52a22146006c45cc"
+    },
+    {
+        group: "춤 (CHOOM)",
+        title: "CHOOM",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e020fbcc1d9dc6a647af4ebdfee",
+        spotifyUrl: "https://open.spotify.com/track/4cox7ONwuCwUvfZ9fsGDVu?si=b23b8402100049dd"
+    },
+    {
+        group: "춤 (CHOOM)",
+        title: "I LIKE IT",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e020fbcc1d9dc6a647af4ebdfee",
+        spotifyUrl: "https://open.spotify.com/track/7vKgGaEDN3shr8HBlCbIWg?si=d6e1149cb486496d"
+    },
+    {
+        group: "춤 (CHOOM)",
+        title: "LOCKED IN",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e020fbcc1d9dc6a647af4ebdfee",
+        spotifyUrl: "https://open.spotify.com/track/1vvoCAUWVRBjCarEvB6Khd?si=3bf69f2e72984201"
     }
 ];
 
+// =====================================================================
+//  黑膠封面流：建立唱片、3D 視差、聚焦偵測、環境光暈與資訊同步
+// =====================================================================
 document.addEventListener('DOMContentLoaded', () => {
-    const carousel = document.getElementById('carousel');
-    const scene = document.getElementById('scene');
-    
-    let currentRotateX = 0;
-    
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const overlay = document.getElementById('overlay');
-    const categoryItems = document.querySelectorAll('#categoryList li');
+    const ALL = '全部 (All)';
+    const FALLBACK = './images/icon.png';
 
-    // === 選單開關邏輯 ===
-    function toggleMenu() {
-        hamburger.classList.toggle('open');
-        mobileMenu.classList.toggle('open');
-        overlay.classList.toggle('visible');
+    const flow     = document.getElementById('flow');
+    const chips    = document.querySelectorAll('.filter-bar .chip');
+    const siGroup  = document.getElementById('si-group');
+    const siTitle  = document.getElementById('si-title');
+    const playFab  = document.getElementById('play-fab');
+    const ambA     = document.querySelector('.amb-a');
+    const ambB     = document.querySelector('.amb-b');
+
+    // Spotify 縮圖統一升級為 300px，避免 64px 模糊
+    const hiRes = (u) => u.replace(/(ab67616d0000)(?:4851|b273)/g, '$11e02');
+    const esc = (s) => String(s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+    let discs = [];        // [{ el, vinyl, img, config }]
+    let activeIdx = -1;
+    let ambFront = ambA;   // 目前顯示中的環境層
+    let ticking = false;
+
+    // 各分類數量
+    chips.forEach(chip => {
+        const g = chip.dataset.group;
+        const n = g === ALL ? cdConfig.length : cdConfig.filter(c => c.group === g).length;
+        const badge = chip.querySelector('.chip-count');
+        if (badge) badge.textContent = n;
+    });
+
+    // 建立封面流
+    function build(group = ALL) {
+        const list = group === ALL ? cdConfig : cdConfig.filter(c => c.group === group);
+        if (!list.length) {
+            flow.innerHTML = '<p class="flow-empty">此分類暫無歌曲</p>';
+            discs = [];
+            return;
+        }
+
+        flow.innerHTML = list.map((c) => {
+            const img = esc(hiRes(c.imageUrl));
+            const title = esc(c.title);
+            const url = esc(c.spotifyUrl);
+            return `
+                <article class="disc">
+                    <a class="disc-inner" href="${url}" target="_blank" rel="noopener" aria-label="在 Spotify 收聽 ${title}">
+                        <span class="vinyl"><span class="vinyl-disc"><span class="vinyl-label" style="background-image:url('${img}')"></span></span></span>
+                        <span class="cover">
+                            <img src="${img}" alt="${title}" loading="lazy" decoding="async"
+                                 onerror="this.onerror=null;this.src='${FALLBACK}';this.classList.add('is-fallback');">
+                        </span>
+                    </a>
+                </article>`;
+        }).join('');
+
+        // 快取節點
+        discs = Array.from(flow.querySelectorAll('.disc')).map((el, i) => ({
+            el,
+            inner: el.querySelector('.disc-inner'),
+            vinyl: el.querySelector('.vinyl'),
+            config: list[i]
+        }));
+
+        flow.scrollLeft = 0;
+        activeIdx = -1;
+        requestAnimationFrame(update);
     }
 
-    hamburger.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', toggleMenu);
+    // 將目前聚焦的唱片資訊同步到畫面
+    function setActive(i) {
+        if (i === activeIdx || !discs[i]) return;
+        if (discs[activeIdx]) discs[activeIdx].el.classList.remove('is-active');
+        discs[i].el.classList.add('is-active');
+        activeIdx = i;
 
-    let currentRadius = 0; // 用來儲存當前的半徑，方便拖曳時使用
+        const c = discs[i].config;
+        siGroup.textContent = c.group;
+        siTitle.textContent = c.title;
+        playFab.href = c.spotifyUrl;
+        playFab.setAttribute('aria-label', '在 Spotify 收聽 ' + c.title);
+        siTitle.classList.remove('flip');
+        void siTitle.offsetWidth;
+        siTitle.classList.add('flip');
 
-    // === 渲染輪盤的函式 ===
-    function renderCarousel(filterGroup = '全部 (All)') {
-        // 清空現有輪盤
-        carousel.innerHTML = '';
-        
-        // 根據選擇的群組篩選
-        const filteredConfig = filterGroup === '全部 (All)' 
-            ? cdConfig 
-            : cdConfig.filter(cd => cd.group === filterGroup);
-            
-        const totalItems = filteredConfig.length;
-        if (totalItems === 0) return;
-        
-        // 計算每張 CD 旋轉角度，平均分佈在 360 度上
-        const theta = 360 / totalItems;
-        
-        // 解除 radius 上限限制，讓越多 CD 時半徑越大，避免擠在一起
-        currentRadius = totalItems <= 2 ? 100 : Math.round((140 / 2) / Math.tan(Math.PI / totalItems)) + 60;
-        
-        filteredConfig.forEach((config, index) => {
-            const angle = theta * index;
-            
-            const cdItem = document.createElement('div');
-            cdItem.className = 'cd-item';
-            // 賦予初始位置，將原本繞 Y 軸變成圈，改為繞 X 軸變成直向轉輪
-            cdItem.style.transform = `rotateX(${angle}deg) translateZ(${currentRadius}px)`;
+        // 環境光暈交叉淡入到目前封面
+        const back = ambFront === ambA ? ambB : ambA;
+        back.style.backgroundImage = `url('${hiRes(c.imageUrl)}')`;
+        back.classList.add('show');
+        ambFront.classList.remove('show');
+        ambFront = back;
+    }
 
-            // 建立各個面來組成 3D 立體感 (厚度從原10px變8px, Z平移從10變8)
-            const facesStr = `
-                <div class="cd-title">${config.title}</div>
-                <div class="cd-face cd-front" style="background-image: url('${config.imageUrl}')"></div>
-                <div class="cd-face cd-back"></div>
-                <div class="cd-face cd-top"></div>
-                <div class="cd-face cd-bottom"></div>
-                <div class="cd-face cd-left"></div>
-                <div class="cd-face cd-right"></div>
-            `;
-            cdItem.innerHTML = facesStr;
+    // 視差更新：依與中心的距離調整縮放/傾斜/透明度
+    function update() {
+        if (!discs.length) return;
+        const fr = flow.getBoundingClientRect();
+        const cx = fr.left + fr.width / 2;
+        let best = Infinity, bi = 0;
 
-            // 點擊事件
-            // 加入變數防手滑誤觸點擊
-            let clickTimeout;
-            cdItem.addEventListener('pointerdown', () => {
-                clickTimeout = setTimeout(() => { clickTimeout = null; }, 200); // 200ms 內算點擊
-            });
-            cdItem.addEventListener('pointerup', () => {
-                if (clickTimeout) {
-                    clearTimeout(clickTimeout);
-                    window.open(config.spotifyUrl, '_blank');
-                }
-            });
-
-            carousel.appendChild(cdItem);
+        discs.forEach((d, i) => {
+            const r = d.el.getBoundingClientRect();
+            if (!r.width) return;
+            const t = (r.left + r.width / 2 - cx) / r.width; // 與中心的距離(以卡寬為單位)
+            const at = Math.abs(t);
+            const clamp = Math.min(at, 1);
+            d.inner.style.transform = `rotateY(${(-t * 20).toFixed(2)}deg) scale(${(1 - clamp * 0.26).toFixed(3)})`;
+            d.inner.style.opacity = (1 - clamp * 0.5).toFixed(3);
+            d.inner.style.zIndex = String(100 - Math.round(Math.min(at, 9) * 10));
+            d.vinyl.style.transform = `translateX(${(Math.max(0, 1 - at) * 30).toFixed(1)}%)`;
+            if (at < best) { best = at; bi = i; }
         });
-        
-        // 切換分類時重置角度
-        currentRotateX = 0;
-        // 把整個輪組容器往深處推 (Z 軸退回 -currentRadius)，確保正面那張 CD 大小與距離永遠一致且不因半徑放大而破版
-        carousel.style.transform = `translateZ(${-currentRadius}px) scale(1.35) rotateY(0deg) rotateX(0deg)`;
+
+        setActive(bi);
     }
 
-    // 初始渲染
-    renderCarousel('全部 (All)');
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { update(); ticking = false; });
+    }
 
-    // === 選單列表綁定事件 ===
-    categoryItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // 移除所有的 active
-            categoryItems.forEach(li => li.classList.remove('active'));
-            // 為當前點擊加 active
+    flow.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => requestAnimationFrame(update));
+
+    // 分類切換
+    chips.forEach(chip => {
+        chip.addEventListener('click', function () {
+            if (this.classList.contains('active')) return;
+            chips.forEach(c => c.classList.remove('active'));
             this.classList.add('active');
-            
-            // 重新渲染輪盤
-            renderCarousel(this.textContent.trim());
-
-            // 手機版：點擊分類後自動收起選單
-            toggleMenu();
+            build(this.dataset.group);
+            this.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         });
     });
 
-    // === 滑動控制邏輯 (取代下方拉桿) ===
-    let isDragging = false;
-    let startY = 0;
-    
-    // 電腦滑鼠與手機觸控共用 pointer 事件
-    scene.addEventListener('pointerdown', (e) => {
-        isDragging = true;
-        startY = e.clientY;
-        // 中止預設行為避免選取文字
-        e.preventDefault();
-    });
-
-    scene.addEventListener('pointermove', (e) => {
-        if (!isDragging) return;
-        const currentY = e.clientY;
-        const deltaY = currentY - startY; // 計算移動量
-        
-        // 增減當前角度 (乘上係數控制轉速0.5)
-        currentRotateX += deltaY * -0.5; 
-        
-        // 將轉動與目前大圓的 Z 軸後推屬性保持一致，才不會因轉動而放大
-        carousel.style.transform = `translateZ(${-currentRadius}px) scale(1.35) rotateY(0deg) rotateX(${currentRotateX}deg)`;
-        
-        // 更新 startY 供下次計算
-        startY = currentY;
-    });
-
-    scene.addEventListener('pointerup', () => {
-        isDragging = false;
-    });
-
-    scene.addEventListener('pointerleave', () => {
-        isDragging = false;
-    });
-
+    // 初始化
+    build(ALL);
 });
