@@ -316,6 +316,10 @@ body {
     transform: translateZ(10px);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     overflow: hidden;
+    /* JS 對 .cd-item 套用 filter/opacity，會把 preserve-3d 強制 flatten，
+       使六個面改依 DOM 順序堆疊，封面(front)會被後面的 .cd-back 蓋住。
+       提高 z-index 確保封面永遠畫在最上層。 */
+    z-index: 2;
 }
 /* 唱片封面上的玻璃反光 */
 .cd-front::after {
