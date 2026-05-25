@@ -1,24 +1,48 @@
-// 星空背景產生腳本 (來自 home)
+// =====================================================================
+//  星空背景 + 流星 (來自 home，並加入流星效果)
+// =====================================================================
 document.addEventListener('DOMContentLoaded', () => {
     const starBg = document.getElementById('star-bg');
-    if (starBg) {
-        for (let i = 0; i < 150; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            const size = Math.random() * 2 + 1;
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            star.style.left = (Math.random() * 100) + '%';
-            star.style.top = (Math.random() * 100) + '%';
-            star.style.animationDuration = (Math.random() * 3 + 1.5) + 's';
-            star.style.animationDelay = (Math.random() * 5) + 's';
-            star.style.opacity = Math.random();
-            starBg.appendChild(star);
-        }
+    if (!starBg) return;
+
+    for (let i = 0; i < 150; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 2 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = (Math.random() * 100) + '%';
+        star.style.top = (Math.random() * 100) + '%';
+        star.style.animationDuration = (Math.random() * 3 + 1.5) + 's';
+        star.style.animationDelay = (Math.random() * 5) + 's';
+        star.style.opacity = Math.random();
+        starBg.appendChild(star);
+    }
+
+    // 偶爾劃過的流星
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+        const launchShootingStar = () => {
+            const s = document.createElement('div');
+            s.className = 'shooting-star';
+            s.style.left = (Math.random() * 60 + 30) + '%';
+            s.style.top = (Math.random() * 40) + '%';
+            const dur = Math.random() * 1.2 + 1.0;
+            s.style.animation = `shoot ${dur}s ease-out forwards`;
+            starBg.appendChild(s);
+            setTimeout(() => s.remove(), dur * 1000 + 200);
+        };
+        const scheduleShoot = () => {
+            launchShootingStar();
+            setTimeout(scheduleShoot, Math.random() * 6000 + 4000);
+        };
+        setTimeout(scheduleShoot, 2500);
     }
 });
 
-// 此處為您的播放清單 / CD 配置，您可以自行更換 imageUrl 和 spotifyUrl
+// =====================================================================
+//  播放清單 / CD 配置 (可自行更換 imageUrl 和 spotifyUrl)
+// =====================================================================
 const cdConfig = [
     {
         group: "DRIP",
@@ -151,44 +175,96 @@ const cdConfig = [
         title: "BATTER UP -JP Ver.",
         imageUrl: "https://i.scdn.co/image/ab67616d00001e02fbbc19bdfa0c01f3bfcd4428",
         spotifyUrl: "https://open.spotify.com/track/37Md0gjwNkqK7hwJEnTeNH?si=bf55a3f4c8a24572"
+    },
+    {
+        group: "춤 (CHOOM)",
+        title: "MOON",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e020fbcc1d9dc6a647af4ebdfee",
+        spotifyUrl: "https://open.spotify.com/track/4ni36cZOQZldZGpHyLHFqX?si=52a22146006c45cc"
+    },
+    {
+        group: "춤 (CHOOM)",
+        title: "CHOOM",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e020fbcc1d9dc6a647af4ebdfee",
+        spotifyUrl: "https://open.spotify.com/track/4cox7ONwuCwUvfZ9fsGDVu?si=b23b8402100049dd"
+    },
+    {
+        group: "춤 (CHOOM)",
+        title: "I LIKE IT",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e020fbcc1d9dc6a647af4ebdfee",
+        spotifyUrl: "https://open.spotify.com/track/7vKgGaEDN3shr8HBlCbIWg?si=d6e1149cb486496d"
+    },
+    {
+        group: "춤 (CHOOM)",
+        title: "LOCKED IN",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e020fbcc1d9dc6a647af4ebdfee",
+        spotifyUrl: "https://open.spotify.com/track/1vvoCAUWVRBjCarEvB6Khd?si=3bf69f2e72984201"
     }
 ];
 
+// =====================================================================
+//  3D 輪盤：拖曳旋轉 + 慣性 + 自動旋轉 + 焦點高亮
+// =====================================================================
 document.addEventListener('DOMContentLoaded', () => {
-    const carousel = document.getElementById('carousel');
-    const slider = document.getElementById('slider');
-    
-    // 渲染輪盤的函式
-    function renderCarousel(filterGroup = '全部 (All)') {
-        // 清空現有輪盤
-        carousel.innerHTML = '';
-        
-        // 根據選擇的群組篩選 CD 陣列
-        const filteredConfig = filterGroup === '全部 (All)' 
-            ? cdConfig 
-            : cdConfig.filter(cd => cd.group === filterGroup);
-            
-        const totalItems = filteredConfig.length;
-        if (totalItems === 0) return; // 防呆，沒有資料時不執行後續
-        
-        // 計算每張 CD 的旋轉角度，讓它們平均分佈在 360 度上
-        const theta = 360 / totalItems;
-        
-        // 計算為了讓每張 CD 不重疊，半徑(translateZ)需要多大
-        // 如果數量太少(1~2張)，給定一個最小半徑避免全部擠在一起
-        const radius = totalItems <= 2 ? 150 : Math.round((200 / 2) / Math.tan(Math.PI / totalItems)) + 80;
+    const ALL = '全部 (All)';
+    const AUTO_SPEED = 0.16;   // 自動旋轉速度 (度/影格)
+    const DRAG_K = 0.35;       // 拖曳靈敏度
 
-        // 動態生成立體正方形 CD
-        filteredConfig.forEach((config, index) => {
+    const carousel  = document.getElementById('carousel');
+    const scene     = document.getElementById('scene');
+    const slider    = document.getElementById('slider');
+    const spinBtn   = document.getElementById('spin-btn');
+    const npTitle   = document.getElementById('np-title');
+    const npLink    = document.getElementById('np-link');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---- 狀態 ----
+    let items = [];            // [{ el, angle, config }]
+    let rotation = 0;          // 套用在輪盤上的 rotateY
+    let applied  = NaN;        // 上一影格已套用的角度 (避免重複寫入)
+    let velocity = 0;          // 慣性速度
+    let dragging = false;
+    let moved = false;
+    let lastX = 0, downX = 0;
+    let downCard = null;
+    let autoRotate = !prefersReduced;
+    let sliderHeld = false;
+    let lastFrontIdx = -1;
+
+    const wrap = (r) => ((r + 180) % 360 + 360) % 360 - 180;
+    const normDeg = (d) => { d %= 360; if (d > 180) d -= 360; if (d < -180) d += 360; return d; };
+
+    // ---- 在側欄填入各分類的曲目數 ----
+    function fillCounts() {
+        document.querySelectorAll('.category-sidebar li').forEach(li => {
+            const g = li.dataset.group;
+            const n = g === ALL ? cdConfig.length : cdConfig.filter(c => c.group === g).length;
+            const badge = li.querySelector('.cat-count');
+            if (badge) badge.textContent = n;
+        });
+    }
+
+    // ---- 建立輪盤 ----
+    function renderCarousel(filterGroup = ALL) {
+        carousel.innerHTML = '';
+        items = [];
+        lastFrontIdx = -1;
+
+        const list = filterGroup === ALL ? cdConfig : cdConfig.filter(c => c.group === filterGroup);
+        const total = list.length;
+        if (total === 0) { setNowPlaying(null); return; }
+
+        const theta = 360 / total;
+        // 半徑：數量太少時給最小值，避免擠在一起 (沿用原本公式)
+        const radius = total <= 2 ? 150 : Math.round((200 / 2) / Math.tan(Math.PI / total)) + 80;
+
+        list.forEach((config, index) => {
             const angle = theta * index;
-            
             const cdItem = document.createElement('div');
             cdItem.className = 'cd-item';
-            // 賦予初始位置
+            cdItem.dataset.url = config.spotifyUrl;
             cdItem.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
-
-            // 建立各個面來組成 3D 立體感，並加入 title 元素
-            const facesStr = `
+            cdItem.innerHTML = `
                 <div class="cd-title">${config.title}</div>
                 <div class="cd-face cd-front" style="background-image: url('${config.imageUrl}')"></div>
                 <div class="cd-face cd-back"></div>
@@ -197,58 +273,170 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="cd-face cd-left"></div>
                 <div class="cd-face cd-right"></div>
             `;
-            cdItem.innerHTML = facesStr;
 
-            // 點擊事件
-            cdItem.addEventListener('click', () => {
-                window.open(config.spotifyUrl, '_blank');
-            });
-
-            // 取消 hover 時覆蓋 transform(因為 css 的 hover 寫法如果直寫 transform 會覆蓋掉位置)
-            // 改使用 JS 控制其懸浮放大才不會弄亂圓形陣列的 Z 軸距離
+            // 滑鼠懸浮時，使用 JS 控制浮起放大，避免覆蓋圓形陣列的 Z 軸位置
             cdItem.addEventListener('mouseenter', () => {
-                cdItem.style.transform = `rotateY(${angle}deg) translateZ(${radius + 30}px) translateY(-10px) scale(1.05)`;
+                cdItem.style.transform = `rotateY(${angle}deg) translateZ(${radius + 30}px) translateY(-10px) scale(1.06)`;
             });
             cdItem.addEventListener('mouseleave', () => {
                 cdItem.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
             });
 
             carousel.appendChild(cdItem);
+            items.push({ el: cdItem, angle, config });
         });
-        
-        // 切換分類時，重置輪盤角度與拉桿位置
+
+        // 重置角度與滑桿
+        rotation = 0;
+        velocity = 0;
+        applied = NaN;
         slider.value = 0;
-        // 初始化時旋轉並推遠輪盤，讓面向使用者的 CD 永遠保持在視角固定距離
-        // 加入 scale 來放大整個輪盤，讓 CD 視覺上更大
-        carousel.style.transform = `translateZ(${-radius}px) scale(1.35) rotateX(-15deg) rotateY(0deg)`;
-        // 將 radius 存到 carousel 上，以便 slider 使用
         carousel.dataset.radius = radius;
+
+        // 切換動畫
+        carousel.classList.remove('switching');
+        void carousel.offsetWidth; // 強制 reflow 以重播動畫
+        carousel.classList.add('switching');
+
+        applyTransform();
+        updateVisuals();
     }
 
-    // 初始渲染全部 CD
-    renderCarousel('全部 (All)');
+    // ---- 套用輪盤旋轉 ----
+    function applyTransform() {
+        const radius = carousel.dataset.radius || 200;
+        carousel.style.transform = `translateZ(${-radius}px) scale(1.35) rotateX(-15deg) rotateY(${rotation}deg)`;
+    }
 
-    // 取得所有分類列表選項並綁定點擊事件
+    // ---- 依面向角度做深度淡化 / 焦點高亮 ----
+    function updateVisuals() {
+        if (!items.length) return;
+        let minA = Infinity, frontIdx = 0;
+        const angs = items.map((it, i) => {
+            const a = Math.abs(normDeg(rotation + it.angle));
+            if (a < minA) { minA = a; frontIdx = i; }
+            return a;
+        });
+
+        items.forEach((it, i) => {
+            const a = angs[i];
+            const factor = (Math.cos(a * Math.PI / 180) + 1) / 2; // 正面=1, 背面=0
+            it.el.style.opacity = (0.30 + 0.70 * factor).toFixed(3);
+            if (i === frontIdx) {
+                it.el.classList.add('is-front');
+                it.el.style.filter = 'brightness(1.12) drop-shadow(0 14px 30px rgba(30, 215, 96, 0.45))';
+            } else {
+                it.el.classList.remove('is-front');
+                it.el.style.filter = `brightness(${(0.58 + 0.45 * factor).toFixed(3)})`;
+            }
+        });
+
+        if (frontIdx !== lastFrontIdx) {
+            setNowPlaying(items[frontIdx].config);
+            lastFrontIdx = frontIdx;
+        }
+    }
+
+    // ---- 更新「現正聚焦」資訊 ----
+    function setNowPlaying(config) {
+        if (!config) {
+            npTitle.textContent = '—';
+            npLink.style.visibility = 'hidden';
+            return;
+        }
+        npLink.style.visibility = 'visible';
+        npTitle.textContent = config.title;
+        npLink.href = config.spotifyUrl;
+        npTitle.classList.remove('flip');
+        void npTitle.offsetWidth;
+        npTitle.classList.add('flip');
+    }
+
+    // ---- 自動旋轉按鈕 ----
+    function updateSpinBtn() {
+        spinBtn.textContent = autoRotate ? '❚❚' : '▶';
+        spinBtn.setAttribute('aria-pressed', autoRotate ? 'true' : 'false');
+        spinBtn.title = autoRotate ? '暫停自動旋轉' : '開始自動旋轉';
+    }
+
+    // ---- 主動畫迴圈 ----
+    function tick() {
+        if (!dragging) {
+            if (Math.abs(velocity) > 0.06) {
+                rotation += velocity;
+                velocity *= 0.94;              // 慣性摩擦
+            } else {
+                velocity = 0;
+                if (autoRotate) rotation += AUTO_SPEED;
+            }
+        }
+        rotation = wrap(rotation);
+
+        if (rotation !== applied) {
+            applyTransform();
+            updateVisuals();
+            if (!sliderHeld) slider.value = Math.round(rotation);
+            applied = rotation;
+        }
+        requestAnimationFrame(tick);
+    }
+
+    // ---- 拖曳旋轉 (滑鼠 + 觸控) ----
+    scene.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('input[type=range]')) return;
+        dragging = true;
+        moved = false;
+        lastX = downX = e.clientX;
+        downCard = e.target.closest('.cd-item');
+        velocity = 0;
+    });
+    window.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        const dx = e.clientX - lastX;
+        lastX = e.clientX;
+        if (Math.abs(e.clientX - downX) > 6) moved = true;
+        rotation += dx * DRAG_K;
+        velocity = dx * DRAG_K;
+    });
+    window.addEventListener('pointerup', (e) => {
+        if (!dragging) return;
+        dragging = false;
+        // 視為點擊 (未明顯拖曳) → 開啟 Spotify
+        if (!moved && downCard && downCard.dataset.url) {
+            window.open(downCard.dataset.url, '_blank');
+        }
+        downCard = null;
+    });
+
+    // ---- 滑桿控制 (使用時暫停自動旋轉) ----
+    slider.addEventListener('pointerdown', () => { sliderHeld = true; });
+    window.addEventListener('pointerup', () => { sliderHeld = false; });
+    slider.addEventListener('input', (e) => {
+        if (autoRotate) { autoRotate = false; updateSpinBtn(); }
+        velocity = 0;
+        rotation = parseFloat(e.target.value);
+    });
+
+    // ---- 自動旋轉開關 ----
+    spinBtn.addEventListener('click', () => {
+        autoRotate = !autoRotate;
+        if (autoRotate) velocity = 0;
+        updateSpinBtn();
+    });
+
+    // ---- 分類切換 ----
     const categoryItems = document.querySelectorAll('.category-sidebar li');
     categoryItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // 移除所有的 active class
+        item.addEventListener('click', function () {
             categoryItems.forEach(li => li.classList.remove('active'));
-            // 為當前點擊的選項加上 active class
             this.classList.add('active');
-            
-            // 根據選取的分類重新渲染輪盤 (抓取 li 的文字內容)
-            renderCarousel(this.textContent.trim());
+            renderCarousel(this.dataset.group);
         });
     });
 
-    // 監聽滑桿來選轉整個輪盤
-    slider.addEventListener('input', (e) => {
-        // 取反 e.target.value 可以讓拖曳方向與視覺更符合直覺
-        const rotateValue = -e.target.value; 
-        const currentRadius = carousel.dataset.radius || 200;
-        
-        // 修改 container 的旋轉角度，保留原本讓其變成橢圓型的 rotateX，並推遠保持 Z 軸固定
-        carousel.style.transform = `translateZ(${-currentRadius}px) scale(1.35) rotateX(-15deg) rotateY(${rotateValue}deg)`;
-    });
+    // ---- 初始化 ----
+    fillCounts();
+    updateSpinBtn();
+    renderCarousel(ALL);
+    requestAnimationFrame(tick);
 });
