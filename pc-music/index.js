@@ -53,43 +53,43 @@ const cdConfig = [
     {
         group: "DRIP",
         title: "DRIP",
-        imageUrl: "https://i.scdn.co/image/ab67616d00004851119800c5fc88785ee3ed1524",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e02119800c5fc88785ee3ed1524",
         spotifyUrl: "https://open.spotify.com/track/198zDKzyktXRG1PGpidY9h?si=41e45c1b1211404a"
     },
     {
         group: "DRIP",
         title: "Love, Maybe",
-        imageUrl: "https://i.scdn.co/image/ab67616d00004851119800c5fc88785ee3ed1524",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e02119800c5fc88785ee3ed1524",
         spotifyUrl: "https://open.spotify.com/track/5Mysty4YeFTdu2Xm7O2yHM?si=ca7e3e22048444c9"
     },
     {
         group: "DRIP",
         title: "Really Like You",
-        imageUrl: "https://i.scdn.co/image/ab67616d00004851119800c5fc88785ee3ed1524",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e02119800c5fc88785ee3ed1524",
         spotifyUrl: "https://open.spotify.com/track/3entdIWiOuQfcXIkJEABsV?si=202dd8e63c0c4223"
     },
     {
         group: "DRIP",
         title: "BILLIONAIRE",
-        imageUrl: "https://i.scdn.co/image/ab67616d00004851119800c5fc88785ee3ed1524",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e02119800c5fc88785ee3ed1524",
         spotifyUrl: "https://open.spotify.com/track/0QICKhP44TRnb4EurQ3tN9?si=47875691ed7a468e"
     },
     {
         group: "DRIP",
         title: "Love In My Heart",
-        imageUrl: "https://i.scdn.co/image/ab67616d00004851119800c5fc88785ee3ed1524",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e02119800c5fc88785ee3ed1524",
         spotifyUrl: "https://open.spotify.com/track/7uGZIgNGAM4y7cyLj9SPlw?si=68efcbe450d342e3"
     },
     {
         group: "DRIP",
         title: "Woke Up In Tokyo (RUKA & ASA)",
-        imageUrl: "https://i.scdn.co/image/ab67616d00004851119800c5fc88785ee3ed1524",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e02119800c5fc88785ee3ed1524",
         spotifyUrl: "https://open.spotify.com/track/2prYdDrdqzyZgk2PyXps1F?si=1dac1d61d8434b53"
     },
     {
         group: "DRIP",
         title: "FOREVER",
-        imageUrl: "https://i.scdn.co/image/ab67616d00004851119800c5fc88785ee3ed1524",
+        imageUrl: "https://i.scdn.co/image/ab67616d00001e02119800c5fc88785ee3ed1524",
         spotifyUrl: "https://open.spotify.com/track/6b6KXDbDn0s0Jepxm8a3nr?si=c7f9084b66be46c7"
     },
     {
